@@ -1,0 +1,115 @@
+
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "calc_basic",
+      "category": "tool_call",
+      "history": [],
+      "question": "请计算 123 × 456",
+      "expected_tools": ["calculate"],
+      "expected_contains": ["56088"]
+    },
+    {
+      "id": "time_tool",
+      "category": "tool_call",
+      "history": [],
+      "question": "请查询当前日期和时间",
+      "expected_tools": ["get_current_time"],
+      "expected_contains": []
+    },
+    {
+      "id": "multi_tool",
+      "category": "multi_tool",
+      "history": [],
+      "question": "请计算 123 × 456，并查询当前时间",
+      "expected_tools": [
+        "calculate",
+        "get_current_time"
+      ],
+      "expected_contains": ["56088"]
+    },
+    {
+      "id": "follow_up",
+      "category": "multi_turn",
+      "history": [
+        {
+          "role": "user",
+          "content": "帮我计算 123 × 456"
+        },
+        {
+          "role": "assistant",
+          "content": "计算结果是 56088。"
+        }
+      ],
+      "question": "把刚才的结果乘以 2",
+      "expected_tools": ["calculate"],
+      "expected_contains": ["112176"]
+    },
+    {
+      "id": "long_history_recall",
+      "category": "context_recall",
+      "history": [
+        {
+          "role": "user",
+          "content": "请记住：我的目标是应聘互联网大厂的通用 Agent 应用研发实习。"
+        },
+        {
+          "role": "assistant",
+          "content": "明白，你的目标是应聘互联网大厂的通用 Agent 应用研发实习。"
+        },
+        {
+          "role": "user",
+          "content": "我正在学习 Python。"
+        },
+        {
+          "role": "assistant",
+          "content": "好的，你正在学习 Python。"
+        },
+        {
+          "role": "user",
+          "content": "介绍一下哈希表。"
+        },
+        {
+          "role": "assistant",
+          "content": "哈希表是一种基于键值映射的数据结构。"
+        },
+        {
+          "role": "user",
+          "content": "什么是递归？"
+        },
+        {
+          "role": "assistant",
+          "content": "递归是函数直接或间接调用自身的过程。"
+        },
+        {
+          "role": "user",
+          "content": "什么是二分查找？"
+        },
+        {
+          "role": "assistant",
+          "content": "二分查找通过反复缩小有序区间定位目标。"
+        },
+        {
+          "role": "user",
+          "content": "什么是深度优先搜索？"
+        },
+        {
+          "role": "assistant",
+          "content": "深度优先搜索会沿一条路径尽可能深入，再回溯。"
+        },
+        {
+          "role": "user",
+          "content": "什么是广度优先搜索？"
+        },
+        {
+          "role": "assistant",
+          "content": "广度优先搜索按层次逐步遍历节点。"
+        }
+      ],
+      "question": "我之前说过，我想应聘什么方向的实习？",
+      "expected_tools": [],
+      "expected_contains": ["应用研发"]
+    }
+  ]
+}
