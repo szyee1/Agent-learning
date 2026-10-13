@@ -75,6 +75,8 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install openai python-dotenv tiktoken
+rank-bm25
+jieba
 ```
 
 ### 4.2 配置 API
